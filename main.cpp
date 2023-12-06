@@ -6,7 +6,8 @@ InMemoryDB inmemoryDB;
 
 int main() {
     // should return null, because A doesn’t exist in the DB yet
-    inmemoryDB.get("A");
+    cout << "Value for A at beginning of program: ";
+    cout << inmemoryDB.get("A") << endl;
 
     // should throw an error because a transaction is not in progress
     try {
@@ -22,7 +23,8 @@ int main() {
     inmemoryDB.put("A", 5);
 
     // should return null, because updates to A are not committed yet
-    inmemoryDB.get("A");
+    cout << "Value for A after put call but before commit: ";
+    cout << inmemoryDB.get("A") << endl;
 
     // update A’s value to 6 within the transaction
     inmemoryDB.put("A", 6);
@@ -31,7 +33,8 @@ int main() {
     inmemoryDB.commit();
 
     // should return 6, that was the last value of A to be committed
-    inmemoryDB.get("A");
+    cout << "Value for A after commit: ";
+    cout << inmemoryDB.get("A") << endl;
 
     // throws an error, because there is no open transaction
     try {
@@ -48,7 +51,8 @@ int main() {
     }
 
     // should return null because B does not exist in the database
-    inmemoryDB.get("B");
+    cout << "Value for B before rollback: ";
+    cout << inmemoryDB.get("B") << endl;
 
     // starts a new transaction
     inmemoryDB.begin_transaction();
@@ -60,7 +64,8 @@ int main() {
     inmemoryDB.rollback();
 
     // Should return null because changes to B were rolled back
-    inmemoryDB.get("B");
+    cout << "Value for B after rollback: ";
+    cout << inmemoryDB.get("B") << endl;
 
     return 0;
 }
