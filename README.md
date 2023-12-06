@@ -1,4 +1,4 @@
-# IMDb-assignment
+# Data Processing and Storage Assignment
 
 ## Instructions on how to run code
 
